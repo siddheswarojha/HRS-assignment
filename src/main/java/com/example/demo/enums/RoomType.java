@@ -1,12 +1,11 @@
 package com.example.demo.enums;
 
-// An Enum Indicating Room Types
+// An Enum Indicating Room View Types
 public enum RoomType {
-    STANDARD,
-    SINGLE,
-    DOUBLE,
-    TWIN,
-    SUITE,
-    EXECUTIVE,
-    FAMILY,
+    OCEAN_VIEW,
+    MOUNTAIN_VIEW,
+    GARDEN_VIEW,
+    CITY_VIEW,
+    POOL_VIEW,
+    SKYLINE_VIEW
 }

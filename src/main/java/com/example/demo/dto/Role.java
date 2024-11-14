@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Role extends BaseEntity {
+public class Role  extends AbstractPersistable<Long> {
 
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -79,19 +79,6 @@ public class UserController {
         return new UserResponse(userService.updateUser(request));
     }
 
-    // Role management endpoints below.
-
-    /**
-     * Retrieves details of a specific role by its identifier.
-     *
-     * @param roleId the unique identifier of the role
-     * @return role details
-     */
-    @GetMapping("/role/{roleId}")
-  //  @Secured(ROLE_READ)
-    public RoleResponse fetchRoleById(@PathVariable String roleId) {
-        return new RoleResponse(userService.getRole(roleId));
-    }
 
     /**
      * Adds a new role with the provided details.

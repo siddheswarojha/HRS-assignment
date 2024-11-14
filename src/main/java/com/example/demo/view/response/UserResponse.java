@@ -24,7 +24,6 @@ public class UserResponse extends BaseResponse{
     private Date lastPassModifiedDate;
 
     public UserResponse(HRSUser user) {
-        this.uid = user.getUuid();
         this.uniqueIdentifier = user.getUniqueIdentifier();
         this.username = user.getUsername();
         this.email = user.getEmail();

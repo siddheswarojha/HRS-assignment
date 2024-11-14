@@ -23,8 +23,7 @@ public class RoomResponse extends BaseResponse {
     private Boolean smokingAllowed;
 
     public RoomResponse(Room room){
-        this.uid = room.getUuid();
-        this.hotelId = room.getHotel().getUuid();
+        this.hotelId = String.valueOf(room.getHotel().getId());
         this.uniqueIdentifier = room.getUniqueIdentifier();
         this.hotelName = room.getHotel().getName();
         this.name = room.getName();

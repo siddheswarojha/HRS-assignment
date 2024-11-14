@@ -21,9 +21,8 @@ public class BookingResponse extends BaseResponse {
     private Boolean paid;
 
     public BookingResponse(Booking booking){
-        this.uid = booking.getUuid();
         this.uniqueIdentifier = booking.getUniqueIdentifier();
-        this.roomId = booking.getRoom().getUuid();
+        this.roomId = String.valueOf(booking.getRoom().getId());
         this.roomName = booking.getRoom().getName();
         this.checkIn = new Date(booking.getCheckIn() * 3600 * 1000);
         this.checkOut = new Date(booking.getCheckOut() * 3600 * 1000);

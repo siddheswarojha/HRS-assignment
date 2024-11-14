@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Privilege extends BaseEntity
+public class Privilege  extends AbstractPersistable<Long>
 {
 
     @Column(nullable = false, length = 50)

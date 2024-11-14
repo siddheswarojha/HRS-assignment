@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @NoArgsConstructor
-public class Booking extends BaseEntity {
+public class Booking extends AbstractPersistable<Long> {
 
     @ManyToOne
     public Room room;
@@ -29,6 +30,8 @@ public class Booking extends BaseEntity {
     public String bookingStatus;
 
     public boolean paid = true;
+    public String createdBy;
+    public String modifiedBy;
 
     // Add the UniqueIdentifier field
     @Column(name = "unique_identifier", nullable = false, unique = true)

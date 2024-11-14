@@ -21,7 +21,6 @@ public class RoleResponse {
 
     public RoleResponse(Role role){
         this.name = role.getName();
-        this.id = role.getUuid();
         this.privileges = role.getPrivileges().stream().map(Privilege::getName).collect(Collectors.toList());
     }
 }

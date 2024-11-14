@@ -20,7 +20,6 @@ public class HotelResponse extends BaseResponse {
 
     public HotelResponse(Hotel hotel) {
         super(); // Calls the BaseResponse constructor
-        this.uid = hotel.getUuid(); // Use the uid from BaseResponse
         this.uniqueIdentifier = hotel.getUniqueIdentifier();
         this.name = hotel.getName();
         this.contactName = hotel.getContactName(); // Corrected field mapping

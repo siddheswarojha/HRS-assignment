@@ -30,8 +30,8 @@ public class HotelRequest extends BaseRequest {
         hotel.contactName = this.getContactName();
         hotel.contactNumber = this.getContactNumber();
         hotel.address = this.getAddress();
-        hotel.lat = BigDecimal.valueOf(this.getLat());
-        hotel.lng = BigDecimal.valueOf(this.getLng());
+        hotel.lat = this.getLat() != null ? BigDecimal.valueOf(this.getLat()) : null;
+        hotel.lng = this.getLng() != null ? BigDecimal.valueOf(this.getLng()) : null;
         hotel.description = this.getDescription();
         hotel.rating = BigDecimal.valueOf(this.getRating());
         return hotel;

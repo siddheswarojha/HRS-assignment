@@ -8,6 +8,5 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BaseRequest {
-    private String uid;
     private String uniqueIdentifier;
 }

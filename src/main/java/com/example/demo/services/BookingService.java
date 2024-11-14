@@ -97,7 +97,7 @@ public class BookingService extends BaseService {
         Booking booking = bookingRepository.findByUniqueIdentifier(uniqueIdentifier)
                 .orElseThrow(() -> new EntityNotFoundException("Unable to find booking"));
 
-        if (!booking.getCreatedBy().get().getUuid().equals(getCurrentUser().getUuid())) {
+        if (!booking.getCreatedBy().toString().equals(getCurrentUser().getUniqueIdentifier())) {
             throw new RuntimeException("Access denied!");
         }
 

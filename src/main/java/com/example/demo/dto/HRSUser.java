@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-public class HRSUser extends BaseEntity {
+public class HRSUser  extends AbstractPersistable<Long> {
 
     @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
@@ -32,6 +33,8 @@ public class HRSUser extends BaseEntity {
 
     @Column(name = "lastname", length = 20)
     private String lastname;
+    public String createdBy;
+    public String modifiedBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLogin;

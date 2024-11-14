@@ -181,24 +181,14 @@ public class UserService extends BaseService implements UserDetailsService {
     }
 
     /**
-     * Retrieves a role by UUID.
-     *
-     * @param roleId the UUID of the role
-     * @return the role details
-     */
-    public Role getRole(String roleId) {
-        return roleRepository.findOneByUuid(roleId);
-    }
-
-    /**
      * Updates the user's password.
      *
      * @param request the user request containing the new password
      */
     public void updatePassword(UserRequest request) {
         validatePassword(request.getPassword());
-        HRSUser user = userRepository.findByUniqueIdentifier(request.getUid())
-                .orElseThrow(() -> new RuntimeException("Invalid User ID: " + request.getUid()));
+        HRSUser user = userRepository.findByUniqueIdentifier(request.getUniqueIdentifier())
+                .orElseThrow(() -> new RuntimeException("user not found"));
 
         user.setPasswordHash(encoder.encode(request.getPassword()));
         user.setLastPassModifiedDate(new Date());
