@@ -23,22 +23,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        // All the configurations related to an API call lifecycle before reaching the Controllers is defined here.
-        // Configuring Cross-Origin Resource Sharing (CORS) policy, Disabling CSRF (Cross-Site Request Forgery) protection
-        // Disabling HTTP Basic authentication, Denying OPTIONS method, Setting session management strategy as STATELESS,
-        // Adding Custom Filters - JwtFilter.
         http
+                // Enable CORS and disable CSRF
                 .cors().and()
                 .csrf().disable()
+
+                // Disable HTTP Basic authentication
                 .httpBasic().disable()
+
+                // Configure endpoint authorization
                 .authorizeRequests()
+
+                // Allow anonymous access to the signup endpoint
+                .antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
+
+                // Deny all OPTIONS requests
                 .antMatchers(HttpMethod.OPTIONS).denyAll()
+
+                // Permit all other requests (should be restricted for production)
                 .anyRequest().permitAll()
+
                 .and()
+
+                // Stateless session management
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
                 .and()
-                .antMatcher("/**")
+
+                // Add JWT filter before UsernamePasswordAuthenticationFilter
                 .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
