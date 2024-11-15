@@ -1,5 +1,6 @@
 package com.example.demo.view.request;
 
+import com.example.demo.dto.HRSUser;
 import com.example.demo.dto.Hotel;
 import com.github.f4b6a3.ulid.UlidCreator;
 import lombok.Getter;
@@ -21,10 +22,11 @@ public class HotelRequest extends BaseRequest {
     private String description;
     private Double rating;
 
-    public Hotel ToEntity(Hotel hotel) {
+    public Hotel ToEntity(Hotel hotel, HRSUser user) {
         if(hotel == null){
             hotel = new Hotel();
             hotel.uniqueIdentifier = generateULID();
+            hotel.createdBy = user.getUniqueIdentifier();
         }
         hotel.name = this.getName();
         hotel.contactName = this.getContactName();
@@ -37,9 +39,8 @@ public class HotelRequest extends BaseRequest {
         return hotel;
     }
 
-    // You can use a utility method or third-party library for generating ULID
     private String generateULID() {
-        return UlidCreator.getUlid().toString(); // Requires adding a ULID library
+        return UlidCreator.getUlid().toString();
     }
 
 

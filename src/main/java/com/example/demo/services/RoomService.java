@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.dao.HotelRepository;
 import com.example.demo.dao.RoomRepository;
+import com.example.demo.dto.HRSUser;
 import com.example.demo.dto.Hotel;
 import com.example.demo.dto.Room;
 import com.example.demo.view.request.RoomRequest;
@@ -35,13 +36,15 @@ public class RoomService extends BaseService {
      * @return the created Room entity.
      */
     public Room createRoom(RoomRequest request) {
+        HRSUser user = getCurrentUser();
+        Optional<Hotel> hotel = hotelRepository.findById(Long.valueOf(request.getHotelId()));
         Optional<Room> optionalRoom = roomRepository.findByUniqueIdentifier(request.getUniqueIdentifier());
         if (optionalRoom.isPresent()) {
             Room room = optionalRoom.get();
-            room = request.ToEntity(room);
+            room = request.ToEntity(room,hotel.get(),user);
             return roomRepository.saveAndFlush(room);
         } else {
-            Room room = request.ToEntity(null);
+            Room room = request.ToEntity(null,hotel.get(),user);
             return roomRepository.saveAndFlush(room);
         }
 

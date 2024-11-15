@@ -56,7 +56,8 @@ public class BookingService extends BaseService {
     }
 
     private Booking prepareBooking(BookingRequest request, Room room) {
-        Booking booking = request.ToEntity(null);
+        HRSUser user = getCurrentUser();
+        Booking booking = request.ToEntity(null,user);
         booking.setRoom(room);
         booking.setPrice(room.getPrice());
         return booking;
