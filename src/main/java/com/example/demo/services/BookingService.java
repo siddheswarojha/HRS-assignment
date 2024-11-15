@@ -82,7 +82,8 @@ public class BookingService extends BaseService {
     public PageResponse<BookingResponse> getBookingsForUser(Pageable paging) {
         HRSUser currentUser = getCurrentUser();
 
-        Page<Booking> bookings = bookingRepository.findAllByCreatedBy(currentUser, paging);
+        Page<Booking> bookings = bookingRepository.findBookingsBy(currentUser.getUniqueIdentifier(), paging);
+
 
         return buildPageResponse(bookings);
     }
@@ -154,7 +155,7 @@ public class BookingService extends BaseService {
     public PageResponse<BookingResponse> getAllBookingsForUser(Pageable paging) {
         HRSUser currentUser = getCurrentUser();
 
-        Page<Booking> bookings = bookingRepository.findAllByCreatedBy(currentUser, paging);
+        Page<Booking> bookings = bookingRepository.findBookingsBy(currentUser.getUniqueIdentifier(), paging);
 
         return buildPageResponse(bookings);
     }

@@ -1,7 +1,6 @@
 package com.example.demo.dao;
 
 import com.example.demo.dto.Booking;
-import com.example.demo.dto.HRSUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +20,9 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     long countOverlappingBookings(@Param("roomId") Long roomId, @Param("checkIn") Long checkIn, @Param("checkOut") Long checkOut);
 
     //    JPA Method to find all booking of a User
-    Page<Booking> findAllByCreatedBy(HRSUser user, Pageable paging);
+    @Query("SELECT b FROM Booking b WHERE b.createdBy = :createdBy")
+    Page<Booking> findBookingsBy(@Param("createdBy") String createdBy, Pageable pageable);
+
 
     //    JPA Method to Find a Booking By UUID
     Optional<Booking> findByUniqueIdentifier(String uniqueIdentifier);

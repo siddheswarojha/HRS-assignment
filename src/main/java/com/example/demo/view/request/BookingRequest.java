@@ -27,6 +27,7 @@ public class BookingRequest extends BaseRequest {
           booking.createdBy = user.getUniqueIdentifier();
           booking.checkIn = this.getCheckIn().getTime() / 1000 / 3600;
           booking.checkOut = this.getCheckOut().getTime() / 1000 / 3600;
+          booking.uniqueIdentifier = generateULID();
       }
       return booking;
     }
