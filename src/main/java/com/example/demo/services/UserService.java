@@ -10,6 +10,7 @@ import com.example.demo.dto.Role;
 import com.example.demo.view.request.LoginRequest;
 import com.example.demo.view.request.RoleRequest;
 import com.example.demo.view.request.UserRequest;
+import com.github.f4b6a3.ulid.UlidCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,7 @@ public class UserService extends BaseService implements UserDetailsService {
             techAdmin.setFirstname("Tech");
             techAdmin.setLastname("Admin");
             techAdmin.setEmail(SUPER_ADMIN_EMAIL);
+            techAdmin.setUniqueIdentifier(UlidCreator.getUlid().toString());
             techAdmin.addRole(roleRepository.getOneByName("TECHADMIN"));
             userRepository.save(techAdmin);
         }
